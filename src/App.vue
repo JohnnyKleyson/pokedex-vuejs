@@ -2,7 +2,7 @@
   <div id="app">
     <div class="column is-half is-offset-one-quarter">
       <div v-for="(poke, index) in pokemons" :key="index">
-        <Pokemon :name="poke.name" :num="index+1"/>
+        <Pokemon :name="poke.name" :url="poke.url" :num="index+1"/>
       </div>
     </div>
    
@@ -16,12 +16,13 @@ export default {
   name: 'App',
   data(){
     return{
-      pokemons: []
+      pokemons:[]
     }
   },
   created: function(){
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0").then( resp =>{
-      this.pokemons = resp.data.results;
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0").then( res =>{
+      console.log("pegou dados");
+      this.pokemons = res.data.results;
 
     })
   },
